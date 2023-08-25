@@ -7,5 +7,6 @@ import (
 
 func main() {
 	s, _ := app.Reader()
-	fmt.Println(app.UserInputFilter(s))
+	arrS, b, _ := app.UserInputFilter(s)
+	fmt.Println(app.Process(arrS, b))
 }
