@@ -30,7 +30,7 @@ func arabConvertor(s []string) ([]int, error) {
 		if err != nil {
 			return nil, err
 		}
-		if num < -10 && num > 10 {
+		if num < -10 || num > 10 {
 			return nil, fmt.Errorf("%s number is less -10 or more then 10", s[i])
 		}
 		arrNum[i] = num

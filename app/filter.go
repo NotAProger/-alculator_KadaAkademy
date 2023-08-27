@@ -38,7 +38,7 @@ func checkForCorrectNumbers(s []string) (bool, error) {
 	} else if r >= '1' && r <= '9' || r == '-' {
 		isRome = false
 	} else {
-		return false, fmt.Errorf("1 user number is incorrect (check for numbers)")
+		return false, fmt.Errorf("1 user number %s is incorrect (check for numbers)", s[0])
 	}
 
 	for num := 0; num < len(s); num++ {
@@ -46,12 +46,12 @@ func checkForCorrectNumbers(s []string) (bool, error) {
 			if isRome {
 				if r == 'I' || r == 'V' || r == 'X' {
 				} else {
-					return false, fmt.Errorf("%d user number is not rome format", num+1)
+					return false, fmt.Errorf("%d user number %s is not rome format", num+1, s[num])
 				}
 			} else {
 				if r >= '0' && r <= '9' || r == '-' {
 				} else {
-					return false, fmt.Errorf("%d user number is not arab format", num+1)
+					return false, fmt.Errorf("%d user number %s is not arab format", num+1, s[num])
 				}
 			}
 		}
