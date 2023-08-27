@@ -10,7 +10,9 @@ func Calculation(nums []int, sign []string, isRome bool) (string, error) {
 	ans, err := calculationNums(nums, sign)
 
 	if isRome {
-		ansver = roman(ans)
+		if ansver = roman(ans); ansver == "" {
+			return "", fmt.Errorf("answers in rome numerals cant be lower or eqwal 0")
+		}
 	} else {
 		ansver = strconv.Itoa(ans)
 	}

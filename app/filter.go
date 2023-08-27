@@ -11,7 +11,7 @@ func UserInputFilter(s string) ([]string, []string, bool, error) {
 	var err error
 
 	if len(sliceArgs) > 3 {
-		return nil, nil, false, fmt.Errorf("quantity of arguments and mathematical symbols are more than 2")
+		return nil, nil, false, fmt.Errorf("quantity of arguments and mathematical symbols are %d, need 3", len(s))
 	} else if len(sliceArgs) < 3 {
 		return nil, nil, false, fmt.Errorf("string integrity violated (check spaces and presence of 2 arguments and sign)")
 	}
