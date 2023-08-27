@@ -7,11 +7,9 @@ import (
 )
 
 func Reader() (string, error) {
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Println("Enter mathematical example / Введите математический пример")
-	example, err := reader.ReadString('\n')
-	if err != nil {
-		return "", err
-	}
-	return example, nil
+	fmt.Print("Enter example: ")
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	text := scanner.Text()
+	return text, nil
 }
