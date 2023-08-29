@@ -21,7 +21,7 @@ III
 
 Restrictions:
 
-This calculator can maintain only two values, wich can be only from 1 up to 10 included and be presented as in Arabic figures as in Roman figures each.
+This calculator can maintain only two values, wich can be only from -10 up to 10 included presented in Arabic figures and from 1 to 10 in Roman figures.
 
 Supported mathematical signs: +, -, *, /
 
@@ -53,7 +53,7 @@ III
 
 Ограничения:
 
-Этот калькулятор поддерживает только два значения, которые могут быть только от 1 до 10 представленные как в Арабском, так и в Римском вариантах.
+Этот калькулятор поддерживает только два значения, которые могут быть только от -10 до 10 представленные в Арабском, и от 1 до 10 в Римском вариантах.
 
 Поддерживаемые знаки: +, -, *, /
 
