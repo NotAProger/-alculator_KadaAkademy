@@ -5,15 +5,16 @@ import (
 	"strings"
 )
 
+// qwantity of arguments in example f.e. "3 + 5" is 3 arg
+const maxArgs int = 3
+
 func UserInputFilter(s string) ([]string, []string, bool, error) {
 	sliceArgs := strings.Split(s, " ")
 	var isRome bool
 	var err error
 
-	if len(sliceArgs) > 3 {
-		return nil, nil, false, fmt.Errorf("quantity of arguments and mathematical symbols are %d, need 3", len(s))
-	} else if len(sliceArgs) < 3 {
-		return nil, nil, false, fmt.Errorf("string integrity violated (check spaces and presence of 2 arguments and sign)")
+	if err = isEnafArgs(len(sliceArgs)); err != nil {
+		return nil, nil, false, err
 	}
 
 	arrNums, arrSign := sortingStrs(sliceArgs)
@@ -35,22 +36,18 @@ func checkForCorrectNumbers(s []string) (bool, error) {
 	r := s[0][0]
 	if r == 'I' || r == 'V' || r == 'X' {
 		isRome = true
-	} else if r >= '1' && r <= '9' || r == '-' {
-		isRome = false
-	} else {
-		return false, fmt.Errorf("1 user number %s is incorrect (check for numbers)", s[0])
 	}
 
 	for num := 0; num < len(s); num++ {
-		for _, r := range s[num] {
-			if isRome {
-				if r == 'I' || r == 'V' || r == 'X' {
-				} else {
+		if isRome {
+			for _, r := range s[num] {
+				if r != 'I' && r != 'V' && r != 'X' {
 					return false, fmt.Errorf("%d user number %s is not rome format", num+1, s[num])
 				}
-			} else {
-				if r >= '0' && r <= '9' || r == '-' {
-				} else {
+			}
+		} else {
+			for _, r := range s[num] {
+				if r < '0' || r > '9' && r != '-' {
 					return false, fmt.Errorf("%d user number %s is not arab format", num+1, s[num])
 				}
 			}
@@ -61,8 +58,7 @@ func checkForCorrectNumbers(s []string) (bool, error) {
 
 func checkForCorrectMathematicalSymbol(s []string) error {
 	for _, r := range s {
-		if r == "+" || r == "-" || r == "*" || r == "/" {
-		} else {
+		if r != "+" && r != "-" && r != "*" && r != "/" {
 			return fmt.Errorf("%s mathematical symbol is incorrect or is not supported", r)
 		}
 	}
@@ -82,4 +78,14 @@ func sortingStrs(s []string) ([]string, []string) {
 	}
 
 	return arrNums, arrSign
+}
+
+func isEnafArgs(len int) error {
+	if len > maxArgs {
+		return fmt.Errorf("quantity of arguments and mathematical symbols are %d, need 3", maxArgs)
+	}
+	if len < maxArgs {
+		return fmt.Errorf("string integrity violated (check spaces and presence of arguments and sign)")
+	}
+	return nil
 }
